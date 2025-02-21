@@ -1,0 +1,14 @@
+{
+  "name": "dailyman",
+  "version": "1.0.0",
+  "description": "sends a man every day",
+  "main": "man.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bathtubfulloftoast",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9"
+  }
+}

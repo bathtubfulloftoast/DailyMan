@@ -1,0 +1,9 @@
+{
+  "key": "Immich-Share-Key",
+  "album": "Immich-Album-ID",
+  "geturl": "https://my.immich.app/",
+  "publicurl": "https://my.immich.app/",
+  "webhook": "Discord-Webhook-Url",
+  "webhookname": null,
+  "webhookicon": null
+}
