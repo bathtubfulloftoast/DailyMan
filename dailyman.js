@@ -74,13 +74,14 @@ data: {
 }
 };
 
-axios.request(discordconf); // just post the man
-
+axios.request(discordconf) // just post the man
+.then(() => {
+  console.log(`${name} has been released into the wild.`);
+})
 
 })
 .catch((error) => {
   console.log(error);
 });
 
-console.log(`${name} has been released into the wild.`);
 

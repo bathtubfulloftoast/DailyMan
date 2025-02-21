@@ -2,9 +2,9 @@
   "name": "dailyman",
   "version": "1.0.0",
   "description": "sends a man every day",
-  "main": "man.js",
+  "main": "dailyman.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "dailyman.js"
   },
   "author": "bathtubfulloftoast",
   "license": "ISC",
