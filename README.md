@@ -1,8 +1,6 @@
 # Daily Man
 a very basic script for sending a random image from an immich album to a discord server.
 it also gives the image a name.
-this does not run daily by itself!!!
-you must use cron or your preferred run scripts daily thing
 
 
 ## Installation
@@ -10,6 +8,15 @@ to install this script just clone it into the directory youd like to have it in 
 
 next copy or rename config-example.json to config.json
 ``cp config.example.json config.json``
+
+now we get to running it daily.
+first you install pm2
+``npm install -g pm2``
+
+next you run the script as a cron job with pm2 
+this command will run it at 7:30 AM every day.
+
+``pm2 start dailyman --cron "* * * * *" --no-autorestart``
 
 ## Config Example
 ```
