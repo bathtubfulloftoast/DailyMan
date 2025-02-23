@@ -16,7 +16,9 @@ first you install pm2
 next you run the script as a cron job with pm2 
 this command will run it at 7:30 AM every day.
 
-``pm2 start dailyman.js --cron "30 7 * * *" --no-autorestart --no-autostart``
+``pm2 start dailyman.js --cron "30 7 * * *" --no-autorestart``
+the process will run upon being started
+i currently do now know how to stop this but ill find out eventually :pray:
 
 ## Config Example
 ```
