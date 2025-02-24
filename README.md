@@ -9,17 +9,6 @@ to install this script just clone it into the directory youd like to have it in 
 next copy or rename config-example.json to config.json
 ``cp config.example.json config.json``
 
-now we get to running it daily.
-first you install pm2
-``npm install -g pm2``
-
-next you run the script as a cron job with pm2 
-this command will run it at 7:30 AM every day.
-
-``pm2 start dailyman.js --cron "30 7 * * *" --no-autorestart``
-the process will run upon being started
-i currently do now know how to stop this but ill find out eventually :pray:
-
 ## Config Example
 ```
 {
