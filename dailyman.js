@@ -1,7 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 var cron = require('node-cron');
-const { key, album, geturl, publicurl,webhook,webhookname,webhookicon } = require('./config.json');
+const { key, album, geturl, publicurl,webhook,webhookname,webhookicon,cronenabled,crontime } = require('./config.json');
 
 // stolen from https://stackoverflow.com/a/1026087
 // makes the name proper
@@ -76,7 +76,8 @@ async function sendToDiscord(name, photourl, thumburl) {
 
   try {
     await axios.request(discordconf);
-    console.log(`${name} has been released into the wild.`);
+        var datetime = new Date();
+    console.log(`[${datetime}] ${name} has been released into the wild.`);
   } catch (error) {
     console.error("Error sending data to Discord:", error);
   }
@@ -94,7 +95,10 @@ async function main() {
 }
 
 // Execute the main function
-
-cron.schedule('0 7 * * *', () => {
+if (cronenabled == true) {
+cron.schedule(crontime, () => {
   main();
-});
+})
+} else {
+main();
+};

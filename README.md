@@ -18,9 +18,23 @@ next copy or rename config-example.json to config.json
   "publicurl": "https://my.immich.app/",
   "webhook": "Discord-Webhook-Url",
   "webhookname": null,
-  "webhookicon": null
+  "webhookicon": null,
+  "cronenabled": true,
+  "crontime": "0 7 * * *"
 }
 ```
+### config flags
+| Key    | Value |
+| -------- | ------- |
+| key | your immich share key | 
+| album | immich album id | 
+| geturl | the retreval url | 
+| publicurl | the public url that will serve as the sent link | 
+| webhook | discord webhook | 
+| webhookname | discord webhook name | 
+| webhookicon | discord webhook icon url | 
+| cronenabled | weather cron is enabled or not | 
+| crontime | the cron time | 
 
 ### My immich api key wont work
 api keys wont work for this 

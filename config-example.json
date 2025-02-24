@@ -5,5 +5,7 @@
   "publicurl": "https://my.immich.app/",
   "webhook": "Discord-Webhook-Url",
   "webhookname": null,
-  "webhookicon": null
+  "webhookicon": null,
+  "cronenabled": true,
+  "crontime": "0 7 * * *"
 }
