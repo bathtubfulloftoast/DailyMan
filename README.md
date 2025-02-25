@@ -17,8 +17,8 @@ next copy or rename config-example.json to config.json
   "geturl": "https://my.immich.app/",
   "publicurl": "https://my.immich.app/",
   "webhook": "Discord-Webhook-Url",
-  "webhookname": null,
-  "webhookicon": null,
+  "webhookname": "Daily Man",
+  "webhookicon": "https://cdn.novassite.net/ninja.jpg",
   "cronenabled": true,
   "crontime": "0 7 * * *"
 }
