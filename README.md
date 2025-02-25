@@ -23,6 +23,7 @@ next copy or rename config-example.json to config.json
   "crontime": "0 7 * * *"
 }
 ```
+
 ### Config Flags
 | Key    | Value |
 | -------- | ------- |
@@ -35,6 +36,9 @@ next copy or rename config-example.json to config.json
 | webhookicon | discord webhook icon url | 
 | cronenabled | weather cron is enabled or not | 
 | crontime | the cron time | 
+
+### how do i run without cron without editing the config?
+to run as a basic non-cron task you can just run it like this ``node dailyman.js --nocron``
 
 ### My immich api key wont work
 api keys wont work for this 
@@ -63,6 +67,31 @@ if you're not already familiar with discord webhooks you can [read the documenta
 these are optional flags for setting the webhooks name and icon through the script
 the icon must be a direct image file
 if left unset it will just use the webhooks regular name and icon set through discord.
+
+### TypeError: Cannot read properties of undefined (reading 'replace')
+this error happens whenever you input the cron time wrong.
+the full error can be read like this
+
+```
+DailyMan/node_modules/node-cron/src/convert-expression/month-names-conversion.js:10
+            expression = expression.replace(new RegExp(items[i], 'gi'), parseInt(i, 10) + 1);
+                                    ^
+
+TypeError: Cannot read properties of undefined (reading 'replace')
+    at convertMonthName (DailyMan/node_modules/node-cron/src/convert-expression/month-names-conversion.js:10:37)
+    at interprete (DailyMan/node_modules/node-cron/src/convert-expression/month-names-conversion.js:16:27)
+    at interprete (DailyMan/node_modules/node-cron/src/convert-expression/index.js:54:26)
+    at validate (DailyMan/node_modules/node-cron/src/pattern-validation.js:117:32)
+    at new TimeMatcher (DailyMan/node_modules/node-cron/src/time-matcher.js:14:9)
+    at new Scheduler (DailyMan/node_modules/node-cron/src/scheduler.js:9:28)
+    at new ScheduledTask (DailyMan/node_modules/node-cron/src/scheduled-task.js:22:27)
+    at createTask (DailyMan/node_modules/node-cron/src/node-cron.js:36:12)
+    at Object.schedule (DailyMan/node_modules/node-cron/src/node-cron.js:25:18)
+    at Object.<anonymous> (DailyMan/dailyman.js:99:6)
+
+Node.js v23.8.0
+```
+if you need help setting the time for cron you can use [crontab guru](https://crontab.guru) to get the correct value 
 
 ## Other Information
 with this script comes a very convenient list of male names

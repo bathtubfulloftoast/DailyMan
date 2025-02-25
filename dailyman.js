@@ -94,11 +94,9 @@ async function main() {
   }
 }
 
-// Execute the main function
-if (cronenabled == true) {
-cron.schedule(crontime, () => {
+if (process.argv.includes('--nocron') || !cronenabled) {
   main();
-})
 } else {
-main();
-};
+  cron.schedule(crontime, main);
+}
+
