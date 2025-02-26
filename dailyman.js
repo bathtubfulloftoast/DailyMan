@@ -3,9 +3,6 @@ const fs = require('fs');
 var cron = require('node-cron');
 const { key, album, geturl, publicurl,webhook,webhookname,webhookicon,cronenabled,crontime } = require('./config.json');
 
-var datetime = new Date();
-
-
 // stolen from https://stackoverflow.com/a/1026087
 // makes the name proper
 // also makes it so i dont have to capitalize my name list
@@ -46,8 +43,6 @@ async function getRandomImage() {
   } catch (error) {
     console.error("Error fetching image from Immich:", error);
     throw error;
-  } finally {
-    console.log(`[${datetime}] Grabbed image from immich`);
   }
 }
 
@@ -80,6 +75,7 @@ async function sendToDiscord(name, photourl, thumburl) {
   };
 
   try {
+    var datetime = new Date();
     await axios.request(discordconf);
     console.log(`[${datetime}] ${name} has been released into the wild.`);
   } catch (error) {
