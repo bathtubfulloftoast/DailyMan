@@ -4,8 +4,6 @@ var cron = require('node-cron');
 const { key, album, geturl, publicurl,webhook,webhookname,webhookicon,cronenabled,crontime } = require('./config.json');
 
 // stolen from https://stackoverflow.com/a/1026087
-// makes the name proper
-// also makes it so i dont have to capitalize my name list
 function capitalizeFirstLetter(val) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
