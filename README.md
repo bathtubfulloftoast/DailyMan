@@ -94,9 +94,7 @@ Node.js v23.8.0
 if you need help setting the time for cron you can use [crontab guru](https://crontab.guru) to help getting the value you want
 
 ## Other Information
-with this script comes a very convenient list of male names
-this is very convenient for if you forget which white man you're talking to
-also not every name is white
+with this script comes a very convenient and inclusive list of male names (theyre not specifically male names its just a list of any name)
 
 another fun fact this script is entirely [bodged](https://www.youtube.com/watch?v=lIFE7h3m40U) together
 this script is NOT meant to be the best solution for sending a random image from an immich album to a discord server
