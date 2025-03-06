@@ -37,6 +37,8 @@ async function getRandomImage() {
       photourl: `${publicurl}/share/${key}/photos/${photoid}`,
       thumburl: `${publicurl}/api/assets/${photoid}/thumbnail?size=preview&key=${key}`,
       shareurl: `${publicurl}/share/${key}`,
+      response: response.data,
+      type: response.data.assets?.[id]?.type,
     };
   } catch (error) {
     console.error("Error fetching image from Immich:", error);
@@ -45,7 +47,7 @@ async function getRandomImage() {
 }
 
 // Async function to send data to Discord
-async function sendToDiscord(name, photourl, thumburl) {
+async function sendToDiscord(name, photourl, thumburl, type) {
   // set up date and turn it into the ISO 8601 format
   const now = new Date();
   const isoString = now.toISOString();
@@ -62,11 +64,12 @@ async function sendToDiscord(name, photourl, thumburl) {
       "embeds": [
         {
           "title": "Today's white man!",
-          "description": `Today's white man is named ${name}`,
+          "description": `Today's white man is named ${name}\n the type is ${type}`,
           "url": photourl,
           "color": Math.floor(Math.random() * 16777215),
           "timestamp": isoString,
-          "image": { "url": thumburl }
+          "image": { "url": thumburl },
+          "footer": {"text": type},
         }
       ]
     }
@@ -85,8 +88,9 @@ async function sendToDiscord(name, photourl, thumburl) {
 async function main() {
   try {
     const name = await getRandomName();
-    const { photourl, thumburl } = await getRandomImage();
-    await sendToDiscord(name, photourl, thumburl);
+    const { photourl, thumburl, response, type } = await getRandomImage();
+//    console.log(response);
+    await sendToDiscord(name, photourl, thumburl,type);
   } catch (error) {
     console.error("Error in main function:", error);
   }
