@@ -64,7 +64,7 @@ async function sendToDiscord(name, photourl, thumburl, type) {
       "embeds": [
         {
           "title": "Today's white man!",
-          "description": `Today's white man is named ${name}\n the type is ${type}`,
+          "description": `Today's white man is named ${name}`,
           "url": photourl,
           "color": Math.floor(Math.random() * 16777215),
           "timestamp": isoString,
@@ -88,9 +88,8 @@ async function sendToDiscord(name, photourl, thumburl, type) {
 async function main() {
   try {
     const name = await getRandomName();
-    const { photourl, thumburl, response, type } = await getRandomImage();
-//    console.log(response);
-    await sendToDiscord(name, photourl, thumburl,type);
+    const { photourl, thumburl, type } = await getRandomImage();
+    await sendToDiscord(name, photourl, thumburl, type);
   } catch (error) {
     console.error("Error in main function:", error);
   }
