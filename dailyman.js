@@ -12,7 +12,7 @@ function capitalizeFirstLetter(val) {
 async function getRandomName() {
   const names = fs.readFileSync('./names.txt').toString().split("\n");
   const maxnames = names.length;
-  const nameid = Math.round(Math.random() * (maxnames-1));
+  const nameid = Math.round(Math.random() * maxnames);
   return capitalizeFirstLetter(names?.[nameid]);
 }
 
@@ -28,7 +28,7 @@ async function getRandomImage() {
   try {
     const response = await axios.request(immichconf);
     const maxphotos = response.data.assets.length;
-    const id = Math.round(Math.random() * (maxphotos-1));
+    const id = Math.round(Math.random() * maxphotos);
 
     
 
@@ -68,7 +68,7 @@ async function sendToDiscord(name, photourl, thumburl, type) {
           "title": "Today's white man!",
           "description": `Today's white man is named ${name}`,
           "url": photourl,
-          "color": Math.round(Math.random() * 16777214),
+          "color": Math.round(Math.random() * 16777215),
           "timestamp": isoString,
           "image": { "url": thumburl },
           "footer": {"text": type},
