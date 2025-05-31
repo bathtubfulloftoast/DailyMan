@@ -10,9 +10,11 @@ function capitalizeFirstLetter(val) {
 
 // grab names from the text file and grab a random one
 async function getRandomName() {
-  const names = fs.readFileSync('./names.txt').toString().split("\n");
-  const maxnames = names.length;
-  const nameid = Math.round(Math.random() * maxnames);
+  const names = fs.readFileSync('./names.txt', 'utf-8')
+  .split('\n')
+  .map(name => name.trim())
+  .filter(Boolean);
+  const nameid = Math.floor(Math.random() * names.length);
   return capitalizeFirstLetter(names?.[nameid]);
 }
 
