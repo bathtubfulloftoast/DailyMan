@@ -30,8 +30,8 @@ next copy the example config as config.json
 | geturl | the url the script will pull data from | 
 | publicurl | the url that will be sent as the link | 
 | webhook | discord webhook url | 
-| webhookname | discord webhook name | 
-| webhookicon | discord webhook icon url | 
+| webhookname | discord webhook name (not required) | 
+| webhookicon | discord webhook icon url (not required) | 
 | cronenabled | weather cron is enabled or not | 
 | crontime | the cron time | 
 

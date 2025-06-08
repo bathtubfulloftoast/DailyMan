@@ -63,8 +63,6 @@ async function sendToDiscord(name, photourl, thumburl, type) {
     headers: { 'Accept': 'application/json' },
     data: {
       "content": null,
-      "username": webhookname,
-      "avatar_url": webhookicon,
       "embeds": [
         {
           "title": "Today's white man!",
@@ -78,6 +76,13 @@ async function sendToDiscord(name, photourl, thumburl, type) {
       ]
     }
   };
+
+  if(webhookname) {
+  discordconf.data.username = webhookname;
+  }
+  if(webhookicon) {
+    discordconf.data.avatar_url = webhookicon;
+  }
 
   try {
     var datetime = new Date();
