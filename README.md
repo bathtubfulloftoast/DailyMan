@@ -54,8 +54,11 @@ get url is the link that the script will use for the api request
 if you're running the script on the same machine as the immich server you should set this to ``http://localhost:2283`` or ``http://127.0.0.1:2283``
 if you aren't running this script on the same machine its recommended to make this the same as the public url.
 
-public url is the actual url discord is going to display
-THIS HAS TO BE A PUBLIC IP OR DOMAIN!
+public url is the link given for other people to see the image via immich
+this can be disabled if you dont want to share the link/make your instance public.
+
+however if you do want it to be public
+IT HAS TO BE A PUBLIC IP OR DOMAIN!
 discord cannot see ips such as ``192.168.0.*`` or ``10.0.0.*``
 if you want to know how to do this refer to [the immich documentation](https://immich.app/docs/guides/remote-access/)
 

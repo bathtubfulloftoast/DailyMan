@@ -3,6 +3,18 @@ const fs = require('fs');
 var cron = require('node-cron');
 const { key, album, geturl, publicurl,webhook,webhookname,webhookicon,cronenabled,crontime } = require('./config.json');
 
+async function getimage(url) {
+  try {
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+    const contentType = response.headers.get("content-type") || "application/octet-stream";
+    return new Blob([arrayBuffer], { type: contentType });
+  } catch (error) {
+    console.error("Error fetching image:", error);
+  }
+}
+
+
 // stolen from https://stackoverflow.com/a/1026087
 function capitalizeFirstLetter(val) {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -39,7 +51,7 @@ async function getRandomImage() {
 
     return {
       photourl: `${publicurl}/share/${key}/photos/${photoid}`,
-      thumburl: `${publicurl}/api/assets/${photoid}/thumbnail?size=preview&key=${key}`,
+      thumburl: `${geturl}/api/assets/${photoid}/thumbnail?size=preview&key=${key}`,
       shareurl: `${publicurl}/share/${key}`,
       response: response.data,
       type: response.data.assets?.[id]?.type,
@@ -56,37 +68,48 @@ async function sendToDiscord(name, photourl, thumburl, type) {
   const now = new Date();
   const isoString = now.toISOString();
 
-  const discordconf = {
-    method: 'post',
-    maxBodyLength: Infinity,
-    url: `${webhook}`,
-    headers: { 'Accept': 'application/json' },
-    data: {
-      "content": null,
-      "embeds": [
-        {
-          "title": "Today's white man!",
-          "description": `Today's white man is named ${name}`,
-          "url": photourl,
-          "color": Math.round(Math.random() * 16777215),
-          "timestamp": isoString,
-          "image": { "url": thumburl },
-          "footer": {"text": type},
-        }
-      ]
-    }
+  const form = new FormData();
+
+
+const discordconf = {
+    "content": null,
+    "embeds": [
+      {
+        "title": "Today's white man!",
+        "description": `Today's white man is named ${name}`,
+        "color": Math.round(Math.random() * 16777215),
+        "timestamp": isoString,
+        "image": { "url": `attachment://${name}.jpg` }, // it doesnt matter if its incorrect it just needs to register as an image.
+        "footer": {"text": type},
+      }
+    ]
   };
 
-  if(webhookname) {
-  discordconf.data.username = webhookname;
-  }
-  if(webhookicon) {
-    discordconf.data.avatar_url = webhookicon;
-  }
+if(webhookname) {
+discordconf.username = webhookname;
+}
+if(webhookicon) {
+discordconf.avatar_url = webhookicon;
+}
+
+if(publicurl) {
+discordconf.embeds[0].url = photourl;
+}
+
+form.append('payload_json', JSON.stringify(discordconf));
+
+
+
+
+
+
+const imageBuffer = await getimage(thumburl);
+form.append('file1', imageBuffer, `${name}.jpg` // I LOVE HARDCODING FILETYPESSS!!!
+);
 
   try {
     var datetime = new Date();
-    await axios.request(discordconf);
+    await axios.post(webhook,form);
     console.log(`[${datetime}] ${name} has been released into the wild.`);
   } catch (error) {
     console.error("Error sending data to Discord:", error);
